@@ -44,6 +44,7 @@ class SearchPlayState extends State<SearchPlay> {
   Duration _position;
   Duration _duration;
   PlayerState _playerState = PlayerState.stopped;
+  bool _songSelected = false;
 
   void initState() {
     super.initState();
@@ -163,6 +164,7 @@ class SearchPlayState extends State<SearchPlay> {
                 ),
               ) : Container(width:25),
               onTap: () async {
+	        _songSelected = true;
                 setState( (){
                   _currentTile = count;
                   _playPause = Icons.pause;
@@ -244,7 +246,7 @@ class SearchPlayState extends State<SearchPlay> {
     );
   }
   Widget _audioControls () {
-    if (_loadedSongs) {
+    if (_songSelected) {
       return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
