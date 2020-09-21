@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
@@ -116,32 +117,26 @@ class SearchPlayState extends State<SearchPlay> {
   }
   Widget _songList() {
     if (_loadedSongs) {
-      return Container(
-        width: _width,
-        height: _height * 0.75,
+      return Expanded (
+        //width: _width,
+        //height: _height * 0.75,
         child: ListView.builder(
           itemBuilder: (context, count) {
             String _title = _resultList[count]['trackName'];
             if (_title == null || _title.length < 1) {
               _title = 'Not Available';
-            } else if (_title.length > 30) {
-              _title = _title.substring(0,20);
             }
             String _artistName = _resultList[count]['artisName'];
             if (_artistName == null || _artistName.length < 1) {
               _artistName = 'Not Available';
-            } else if (_artistName.length > 30) {
-              _artistName = _artistName.substring(0,30);
             }
             String _collectionName = _resultList[count]['collectionName'];
             if (_collectionName == null || _collectionName.length < 1) {
               _collectionName = 'Not Available';
-            } else if (_collectionName.length > 30) {
-              _collectionName = _collectionName.substring(0,30);
             }
             return ListTile(
-              title: Text (_title),
-              subtitle: Text(_artistName + '\n' + _collectionName),
+              title: Text (_title, overflow: TextOverflow.ellipsis,),
+              subtitle: Text(_artistName + '\n' + _collectionName, overflow: TextOverflow.ellipsis,),
               isThreeLine: true,
               leading: _resultList[count]['artworkUrl60'] != null
                   ? Image.network(
