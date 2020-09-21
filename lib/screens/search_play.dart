@@ -126,7 +126,7 @@ class SearchPlayState extends State<SearchPlay> {
             if (_title == null || _title.length < 1) {
               _title = 'Not Available';
             }
-            String _artistName = _resultList[count]['artisName'];
+            String _artistName = _resultList[count]['artistName'];
             if (_artistName == null || _artistName.length < 1) {
               _artistName = 'Not Available';
             }
@@ -159,7 +159,7 @@ class SearchPlayState extends State<SearchPlay> {
                 ),
               ) : Container(width:25),
               onTap: () async {
-	        _songSelected = true;
+	              _songSelected = true;
                 setState( (){
                   _currentTile = count;
                   _playPause = Icons.pause;
